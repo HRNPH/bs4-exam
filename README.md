@@ -2,6 +2,16 @@
 
 A comprehensive 4-quiz examination covering Beautiful Soup web scraping techniques, from basic HTML parsing to advanced real-world scenarios.
 
+## 🌐 Live Demo
+
+This exam is deployed on GitHub Pages at: [hrnph.dev/bs4-exam](https://hrnph.dev/bs4-exam)
+
+- **Main Page**: [hrnph.dev/bs4-exam](https://hrnph.dev/bs4-exam)
+- **Quiz 1**: [hrnph.dev/bs4-exam/exam-1](https://hrnph.dev/bs4-exam/exam-1)
+- **Quiz 2**: [hrnph.dev/bs4-exam/exam-2](https://hrnph.dev/bs4-exam/exam-2)
+- **Quiz 3**: [hrnph.dev/bs4-exam/exam-3](https://hrnph.dev/bs4-exam/exam-3)
+- **Quiz 4**: [hrnph.dev/bs4-exam/exam-4](https://hrnph.dev/bs4-exam/exam-4)
+
 ## Structure
 
 ```
@@ -10,6 +20,12 @@ bs4-exam/
 ├── quiz-2/          # Advanced CSS Selectors  
 ├── quiz-3/          # Navigation and Sibling Traversal
 ├── quiz-4/          # Advanced Techniques and Real-World Scenarios
+├── exam-1/          # HTML files for GitHub Pages deployment
+├── exam-2/          
+├── exam-3/          
+├── exam-4/          
+├── .github/workflows/  # GitHub Actions deployment
+├── index.html       # Main landing page
 └── README.md
 ```
 
@@ -118,5 +134,51 @@ This progression ensures students master Beautiful Soup systematically and are p
 3. **Test frequently** - Run the grader often to check progress
 4. **Study the HTML** - Understand the structure before coding
 5. **Use Beautiful Soup documentation** - It's your best reference
+
+## 🚀 GitHub Pages Deployment
+
+This project is automatically deployed to GitHub Pages using GitHub Actions.
+
+### Setup Instructions
+
+1. **Fork or create this repository** on GitHub
+2. **Enable GitHub Pages** in repository settings:
+   - Go to Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: main, folder: /root
+3. **Push to main branch** - the workflow will automatically deploy
+4. **Access your site** at `https://your-username.github.io/bs4-exam`
+
+### Automatic Deployment Process
+
+- The `.github/workflows/deploy.yml` workflow triggers on push to main
+- HTML files are copied from `quiz-*/` to `exam-*/` directories
+- Site is automatically deployed to GitHub Pages
+- Accessible at your configured custom domain or GitHub Pages URL
+
+### Custom Domain Setup
+
+If you want to use a custom domain (like `hrnph.dev`):
+
+1. **Add DNS records** pointing to GitHub Pages servers
+2. **Create CNAME file** in root: `hrnph.dev`
+3. **Update repository settings** with custom domain
+4. **Configure HTTPS** in repository settings
+
+### Manual Deployment (Alternative)
+
+If you prefer manual deployment:
+
+1. **Copy HTML files**:
+   ```bash
+   mkdir -p exam-1 exam-2 exam-3 exam-4
+   cp quiz-1/index.html exam-1/
+   cp quiz-2/index.html exam-2/
+   cp quiz-3/index.html exam-3/
+   cp quiz-4/index.html exam-4/
+   ```
+
+2. **Enable GitHub Pages** in repository settings
+3. **Select main branch as source** in Pages settings
 
 Good luck and happy scraping! 🕷️

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Soup Exam</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .quiz-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .quiz-card:hover::before {
+            left: 100%;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .quiz-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .quiz-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .quiz-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quiz-skills {
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .quiz-skills strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #ecf0f1;
+            padding: 4px 8px;
+            border-radius: 12px;
+            margin: 2px;
+            font-size: 0.85em;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+
+        .instructions h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .difficulty.beginner {
+            background: #27ae60;
+            color: white;
+        }
+
+        .difficulty.intermediate {
+            background: #f39c12;
+            color: white;
+        }
+
+        .difficulty.advanced {
+            background: #e74c3c;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .quiz-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕷️ Beautiful Soup Exam</h1>
+        <p class="subtitle">Master web scraping through hands-on exercises</p>
+
+        <div class="quiz-grid">
+            <a href="exam-1/" class="quiz-card">
+                <div class="quiz-number">1</div>
+                <div class="difficulty beginner">Beginner</div>
+                <div class="quiz-title">Basic HTML Parsing</div>
+                <div class="quiz-description">
+                    Learn fundamental Beautiful Soup operations by extracting text, handling classes, and counting elements from a simple blog structure.
+                </div>
+                <div class="quiz-skills">
+                    <strong>Skills you'll learn:</strong>
+                    <div>
+                        <span class="skill-tag">Tag selection</span>
+                        <span class="skill-tag">Text extraction</span>
+                        <span class="skill-tag">Element counting</span>
+                        <span class="skill-tag">Basic selectors</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="exam-2/" class="quiz-card">
+                <div class="quiz-number">2</div>
+                <div class="difficulty intermediate">Intermediate</div>
+                <div class="quiz-title">Advanced CSS Selectors</div>
+                <div class="quiz-description">
+                    Master complex CSS selectors, data attributes, and multiple class elements while scraping an e-commerce website.
+                </div>
+                <div class="quiz-skills">
+                    <strong>Skills you'll learn:</strong>
+                    <div>
+                        <span class="skill-tag">CSS selectors</span>
+                        <span class="skill-tag">Data attributes</span>
+                        <span class="skill-tag">Multiple classes</span>
+                        <span class="skill-tag">Complex queries</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="exam-3/" class="quiz-card">
+                <div class="quiz-number">3</div>
+                <div class="difficulty intermediate">Intermediate</div>
+                <div class="quiz-title">Navigation & Traversal</div>
+                <div class="quiz-description">
+                    Navigate the DOM tree using Beautiful Soup's navigation methods, handle parent-child relationships, and traverse siblings.
+                </div>
+                <div class="quiz-skills">
+                    <strong>Skills you'll learn:</strong>
+                    <div>
+                        <span class="skill-tag">DOM navigation</span>
+                        <span class="skill-tag">Tree traversal</span>
+                        <span class="skill-tag">find_next/previous</span>
+                        <span class="skill-tag">Parent/child</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="exam-4/" class="quiz-card">
+                <div class="quiz-number">4</div>
+                <div class="difficulty advanced">Advanced</div>
+                <div class="quiz-title">Real-World Techniques</div>
+                <div class="quiz-description">
+                    Apply advanced techniques including regular expressions, data validation, and statistics calculation in a recipe platform scenario.
+                </div>
+                <div class="quiz-skills">
+                    <strong>Skills you'll learn:</strong>
+                    <div>
+                        <span class="skill-tag">Regular expressions</span>
+                        <span class="skill-tag">Data processing</span>
+                        <span class="skill-tag">Validation</span>
+                        <span class="skill-tag">Statistics</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="instructions">
+            <h3>📚 How to Use This Exam</h3>
+            <ol>
+                <li><strong>Choose a quiz:</strong> Start with Quiz 1 and progress through the exercises in order.</li>
+                <li><strong>Clone the repository:</strong> <span class="code">git clone &lt;repository-url&gt;</span></li>
+                <li><strong>Navigate to a quiz:</strong> <span class="code">cd quiz-1</span> (or quiz-2, quiz-3, quiz-4)</li>
+                <li><strong>Read instructions:</strong> Open the <span class="code">INSTRUCTION.md</span> file to understand requirements.</li>
+                <li><strong>Complete the code:</strong> Implement the TODO sections in <span class="code">main.py</span>.</li>
+                <li><strong>Test your solution:</strong> Run <span class="code">python grader.py</span> to check your work.</li>
+                <li><strong>Review feedback:</strong> The grader will provide detailed feedback and scoring.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

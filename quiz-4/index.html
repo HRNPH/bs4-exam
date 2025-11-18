@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Sharing Platform</title>
+    <style>
+        .difficulty-easy { color: green; }
+        .difficulty-medium { color: orange; }
+        .difficulty-hard { color: red; }
+        .rating { color: #ff6b6b; }
+        .prep-time::before { content: "⏱ "; }
+        .servings::before { content: "👥 "; }
+        .calories::before { content: "🔥 "; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Delicious Recipes Hub</h1>
+            <div class="search-section">
+                <input type="text" placeholder="Search recipes..." class="search-box">
+                <button class="search-btn">Search</button>
+            </div>
+        </header>
+
+        <nav class="recipe-categories">
+            <h2>Recipe Categories</h2>
+            <ul class="category-list">
+                <li><a href="#breakfast">Breakfast</a></li>
+                <li><a href="#lunch">Lunch</a></li>
+                <li><a href="#dinner">Dinner</a></li>
+                <li><a href="#desserts">Desserts</a></li>
+                <li><a href="#vegetarian">Vegetarian</a></li>
+            </ul>
+        </nav>
+
+        <main class="recipes-container">
+            <section class="featured-recipes">
+                <h2>Featured Recipes</h2>
+
+                <article class="recipe-card" data-id="recipe-001" data-category="breakfast" data-difficulty="easy">
+                    <div class="recipe-header">
+                        <h3>Fluffy Pancakes</h3>
+                        <div class="recipe-meta">
+                            <span class="difficulty difficulty-easy">Easy</span>
+                            <span class="prep-time">20 mins</span>
+                            <span class="servings">4 servings</span>
+                            <span class="calories">320 cal</span>
+                        </div>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="recipe-description">
+                            <p>Light and fluffy pancakes perfect for a weekend breakfast. These pancakes are easy to make and always turn out delicious!</p>
+                        </div>
+                        <div class="recipe-rating" data-rating="4.7" data-reviews="156">
+                            <span class="rating">★★★★★</span>
+                            <span class="rating-text">(4.7/5.0 - 156 reviews)</span>
+                        </div>
+                        <div class="recipe-tags">
+                            <span class="tag">vegetarian</span>
+                            <span class="tag">quick</span>
+                            <span class="tag">family-friendly</span>
+                        </div>
+                        <div class="recipe-stats">
+                            <div class="stat">
+                                <span class="stat-label">Makes:</span>
+                                <span class="stat-value">12 pancakes</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Prep:</span>
+                                <span class="stat-value">10 mins</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Cook:</span>
+                                <span class="stat-value">10 mins</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recipe-footer">
+                        <button class="btn-save">Save Recipe</button>
+                        <button class="btn-share">Share</button>
+                    </div>
+                </article>
+
+                <article class="recipe-card" data-id="recipe-002" data-category="dinner" data-difficulty="medium">
+                    <div class="recipe-header">
+                        <h3>Grilled Salmon with Herbs</h3>
+                        <div class="recipe-meta">
+                            <span class="difficulty difficulty-medium">Medium</span>
+                            <span class="prep-time">35 mins</span>
+                            <span class="servings">2 servings</span>
+                            <span class="calories">450 cal</span>
+                        </div>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="recipe-description">
+                            <p>Perfectly grilled salmon fillet with fresh herbs and lemon. This healthy dish is packed with omega-3 fatty acids and flavor.</p>
+                        </div>
+                        <div class="recipe-rating" data-rating="4.9" data-reviews="89">
+                            <span class="rating">★★★★★</span>
+                            <span class="rating-text">(4.9/5.0 - 89 reviews)</span>
+                        </div>
+                        <div class="recipe-tags">
+                            <span class="tag">healthy</span>
+                            <span class="tag">high-protein</span>
+                            <span class="tag">gluten-free</span>
+                        </div>
+                        <div class="recipe-stats">
+                            <div class="stat">
+                                <span class="stat-label">Makes:</span>
+                                <span class="stat-value">2 fillets</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Prep:</span>
+                                <span class="stat-value">15 mins</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Cook:</span>
+                                <span class="stat-value">20 mins</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recipe-footer">
+                        <button class="btn-save">Save Recipe</button>
+                        <button class="btn-share">Share</button>
+                    </div>
+                </article>
+
+                <article class="recipe-card" data-id="recipe-003" data-category="desserts" data-difficulty="hard">
+                    <div class="recipe-header">
+                        <h3>Chocolate Lava Cake</h3>
+                        <div class="recipe-meta">
+                            <span class="difficulty difficulty-hard">Hard</span>
+                            <span class="prep-time">45 mins</span>
+                            <span class="servings">4 servings</span>
+                            <span class="calories">580 cal</span>
+                        </div>
+                    </div>
+                    <div class="recipe-content">
+                        <div class="recipe-description">
+                            <p>Decadent chocolate cake with a warm, gooey center. This restaurant-quality dessert is sure to impress your guests!</p>
+                        </div>
+                        <div class="recipe-rating" data-rating="4.8" data-reviews="234">
+                            <span class="rating">★★★★★</span>
+                            <span class="rating-text">(4.8/5.0 - 234 reviews)</span>
+                        </div>
+                        <div class="recipe-tags">
+                            <span class="tag">dessert</span>
+                            <span class="tag">chocolate</span>
+                            <span class="tag">impressive</span>
+                        </div>
+                        <div class="recipe-stats">
+                            <div class="stat">
+                                <span class="stat-label">Makes:</span>
+                                <span class="stat-value">4 cakes</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Prep:</span>
+                                <span class="stat-value">20 mins</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Cook:</span>
+                                <span class="stat-value">25 mins</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recipe-footer">
+                        <button class="btn-save">Save Recipe</button>
+                        <button class="btn-share">Share</button>
+                    </div>
+                </article>
+            </section>
+
+            <section class="recipe-summary-stats">
+                <h2>Recipe Collection Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Recipes</h3>
+                        <span class="stat-number">3</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Categories</h3>
+                        <span class="stat-number">3</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average Rating</h3>
+                        <span class="stat-number">4.8</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Reviews</h3>
+                        <span class="stat-number">479</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>Your trusted source for delicious recipes from around the world.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#facebook">Facebook</a>
+                        <a href="#instagram">Instagram</a>
+                        <a href="#youtube">YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Comments Section (hidden by default) -->
+    <div class="comments-section" style="display: none;">
+        <div class="comment" data-recipe-id="recipe-001">
+            <span class="comment-author">Alice M.</span>
+            <span class="comment-rating">★★★★★</span>
+            <span class="comment-text">Best pancakes ever! My family loved them.</span>
+        </div>
+        <div class="comment" data-recipe-id="recipe-002">
+            <span class="comment-author">John D.</span>
+            <span class="comment-rating">★★★★☆</span>
+            <span class="comment-text">Great recipe, very flavorful and healthy!</span>
+        </div>
+    </div>
+</body>
+</html>

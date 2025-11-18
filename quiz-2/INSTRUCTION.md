@@ -1,28 +1,33 @@
 # Quiz 2: Advanced CSS Selectors with Beautiful Soup
 
 ## Objective
-Practice advanced CSS selectors and attribute extraction using Beautiful Soup.
+Practice advanced CSS selectors and attribute extraction using Beautiful Soup and web fetching.
 
 ## Task
-Complete the `main.py` file to extract specific information from `index.html`. Your program should:
+Complete the `main.py` file to fetch HTML from the live website and extract specific information. Your program should:
 
-1. **Extract all product titles** (4 points)
+1. **Fetch HTML from remote URL** (4 points)
+   - Use `requests` library to fetch HTML from: `https://hrnph.dev/bs4-exam/exam-2`
+   - Handle potential network errors gracefully
+   - Parse the fetched HTML content
+
+2. **Extract all product titles** (4 points)
    - Get text from all elements with class `product-title`
    - Print each title on a new line
 
-2. **Extract current prices** (4 points)
+3. **Extract current prices** (4 points)
    - Get text from all elements with class `price-current`
    - Print each price on a new line
 
-3. **Find products with rating 4.5 or higher** (4 points)
+4. **Find products with rating 4.5 or higher** (4 points)
    - Check `data-rating` attribute on elements with class `product-rating`
    - Print the corresponding product titles for high-rated products
 
-4. **Extract data attributes** (4 points)
+5. **Extract data attributes** (4 points)
    - Get `data-category` and `data-price` attributes from all product cards
    - Print category and price for each product
 
-5. **Find elements with multiple classes** (4 points)
+6. **Find elements with multiple classes** (4 points)
    - Extract text from elements that have both `btn` and `btn-primary` classes
    - Extract text from elements with class `featured`
 
@@ -58,6 +63,8 @@ Featured product: UltraBook Elite
 
 ## Requirements
 - Use Beautiful Soup with CSS selectors (`select()` method)
+- Use `requests` library for web fetching from: `https://hrnph.dev/bs4-exam/exam-2`
+- Handle HTTP errors (404, timeout, connection errors)
 - Use various CSS selector techniques:
   - Class selectors (`.classname`)
   - Attribute selectors (`[attribute]`)
@@ -65,6 +72,13 @@ Featured product: UltraBook Elite
   - Multiple class selectors (`.class1.class2`)
 - Handle data attributes properly
 - Follow the exact output format shown above
+- Add error handling for network issues
+
+## Installation
+Install required packages:
+```bash
+pip install beautifulsoup4 requests
+```
 
 ## Testing
 Run `python grader.py` to check your solution and see your score.

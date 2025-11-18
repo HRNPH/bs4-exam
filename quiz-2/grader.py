@@ -1,16 +1,37 @@
 # Quiz 2 Grader
 import os
+import re
 import subprocess
 import sys
 
+import requests
 from bs4 import BeautifulSoup
 
 
 def load_expected_output():
-    """Load the expected correct output by parsing index.html directly."""
+    """Load the expected correct output by fetching from the live URL or falling back to local index.html."""
 
-    with open("index.html", "r", encoding="utf-8") as file:
-        content = file.read()
+    # Try to fetch from the live URL first
+    live_url = "https://hrnph.dev/bs4-exam/exam-2"
+
+    try:
+        response = requests.get(live_url, timeout=10)
+        response.raise_for_status()
+        content = response.text
+        print(f"✓ Successfully fetched content from live URL: {live_url}")
+    except (requests.RequestException, requests.Timeout) as e:
+        print(f"⚠ Could not fetch from live URL {live_url}: {e}")
+        print("Falling back to local index.html file...")
+
+        # Fallback to local file
+        if not os.path.exists("index.html"):
+            raise FileNotFoundError(
+                "Neither live URL nor local index.html is available"
+            )
+
+        with open("index.html", "r", encoding="utf-8") as file:
+            content = file.read()
+        print("✓ Using local index.html file")
 
     soup = BeautifulSoup(content, "html.parser")
 
@@ -72,6 +93,36 @@ def load_expected_output():
         expected.append(f"Featured product: {featured_products[0]}")
 
     return "\n".join(expected)
+
+
+def check_web_fetching_usage():
+    """Check if student code uses requests library for web fetching."""
+    try:
+        with open("main.py", "r", encoding="utf-8") as file:
+            student_code = file.read()
+
+        # Check for requests import and usage
+        has_requests_import = bool(
+            re.search(r"import\s+requests|from\s+requests", student_code)
+        )
+        has_requests_get = bool(re.search(r"requests\.get\(", student_code))
+        has_url_usage = bool(re.search(r"https?://", student_code))
+
+        return {
+            "has_requests_import": has_requests_import,
+            "has_requests_get": has_requests_get,
+            "has_url_usage": has_url_usage,
+            "using_web_fetching": has_requests_import
+            and has_requests_get
+            and has_url_usage,
+        }
+    except FileNotFoundError:
+        return {
+            "has_requests_import": False,
+            "has_requests_get": False,
+            "has_url_usage": False,
+            "using_web_fetching": False,
+        }
 
 
 def run_student_solution():
@@ -178,14 +229,37 @@ def main():
     print("Beautiful Soup Quiz 2 - Grader")
     print("=" * 50)
 
-    # Check if files exist
+    # Check if main.py exists
     if not os.path.exists("main.py"):
         print("ERROR: main.py not found!")
         return
 
+    # Check web fetching usage first
+    print("Checking web fetching implementation...")
+    web_check = check_web_fetching_usage()
+
+    if not web_check["using_web_fetching"]:
+        print("\n⚠ WARNING: Web fetching issues detected:")
+        if not web_check["has_requests_import"]:
+            print("  - No 'import requests' found in your code")
+        if not web_check["has_requests_get"]:
+            print("  - No 'requests.get()' usage found in your code")
+        if not web_check["has_url_usage"]:
+            print("  - No URL (http/https) found in your code")
+        print(
+            "\n💡 TIP: This quiz expects you to fetch content from the web using requests library!"
+        )
+        print("   Example: requests.get('https://hrnph.dev/bs4-exam/exam-2')")
+    else:
+        print("✓ Web fetching implementation detected!")
+
+    # Check if index.html exists (for fallback)
     if not os.path.exists("index.html"):
-        print("ERROR: index.html not found!")
-        return
+        print(
+            "⚠ WARNING: index.html not found! Will rely on live URL for expected output."
+        )
+    else:
+        print("✓ Local index.html available as fallback")
 
     # Load expected output
     try:

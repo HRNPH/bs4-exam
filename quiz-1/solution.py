@@ -1,17 +1,37 @@
 # Quiz 1: Basic HTML Parsing - SOLUTION
+import requests
 from bs4 import BeautifulSoup
 
 
-def parse_html():
+def fetch_html():
     """
-    Parse index.html and extract post information.
+    Fetch HTML content from the live URL.
+
+    Returns:
+        str: HTML content from the URL
+    """
+    url = "https://hrnph.dev/bs4-exam/exam-1"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for bad status codes
+        return response.text
+    except requests.RequestException as e:
+        print(f"Error fetching HTML: {e}")
+        return None
+
+
+def parse_html(html_content):
+    """
+    Parse HTML content and extract post information.
+
+    Args:
+        html_content (str): HTML content to parse
 
     Returns:
         dict: Dictionary containing titles, authors, dates, and total posts
     """
-    # Read the index.html file
-    with open("index.html", "r", encoding="utf-8") as file:
-        content = file.read()
+    # Use the provided HTML content
+    content = html_content
 
     # Create BeautifulSoup object
     soup = BeautifulSoup(content, "html.parser")
@@ -63,8 +83,14 @@ def print_results(data):
 
 def main():
     """Main function to execute the HTML parsing."""
-    # Call parse_html() and print_results()
-    data = parse_html()
+    # Fetch HTML content first
+    html_content = fetch_html()
+    if html_content is None:
+        print("Failed to fetch HTML content. Exiting.")
+        return
+
+    # Call parse_html() with the fetched HTML content and print_results()
+    data = parse_html(html_content)
     print_results(data)
 
 

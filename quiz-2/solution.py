@@ -1,17 +1,37 @@
 # Quiz 2: Advanced CSS Selectors - SOLUTION
+import requests
 from bs4 import BeautifulSoup
 
 
-def extract_with_css_selectors():
+def fetch_html():
     """
-    Extract information from index.html using CSS selectors.
+    Fetch HTML content from the live URL.
+
+    Returns:
+        str: HTML content from the URL
+    """
+    url = "https://hrnph.dev/bs4-exam/exam-2"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for bad status codes
+        return response.text
+    except requests.RequestException as e:
+        print(f"Error fetching HTML: {e}")
+        return None
+
+
+def extract_with_css_selectors(html_content):
+    """
+    Extract information from HTML content using CSS selectors.
+
+    Args:
+        html_content (str): HTML content to parse
 
     Returns:
         dict: Dictionary containing all extracted information
     """
-    # Read the index.html file
-    with open("index.html", "r", encoding="utf-8") as file:
-        content = file.read()
+    # Use the provided HTML content
+    content = html_content
 
     # Create BeautifulSoup object
     soup = BeautifulSoup(content, "html.parser")
@@ -112,8 +132,14 @@ def print_results(data):
 
 def main():
     """Main function to execute the CSS selector extraction."""
-    # Call extract_with_css_selectors() and print_results()
-    data = extract_with_css_selectors()
+    # Fetch HTML content first
+    html_content = fetch_html()
+    if html_content is None:
+        print("Failed to fetch HTML content. Exiting.")
+        return
+
+    # Call extract_with_css_selectors() with the fetched HTML content and print_results()
+    data = extract_with_css_selectors(html_content)
     print_results(data)
 
 

@@ -1,6 +1,7 @@
 # Quiz 4: Advanced Techniques and Real-World Scenarios - SOLUTION
 import re
 
+import requests
 from bs4 import BeautifulSoup
 
 
@@ -26,16 +27,35 @@ def extract_numeric_value(text):
     return 0.0
 
 
-def extract_recipe_data():
+def fetch_html():
     """
-    Extract and process recipe data from index.html.
+    Fetch HTML content from the live URL.
+
+    Returns:
+        str: HTML content from the URL
+    """
+    url = "https://hrnph.dev/bs4-exam/exam-4"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for bad status codes
+        return response.text
+    except requests.RequestException as e:
+        print(f"Error fetching HTML: {e}")
+        return None
+
+
+def extract_recipe_data(html_content):
+    """
+    Extract and process recipe data from HTML content.
+
+    Args:
+        html_content (str): HTML content to parse
 
     Returns:
         dict: Dictionary containing extracted recipes and statistics
     """
-    # Read the index.html file
-    with open("index.html", "r", encoding="utf-8") as file:
-        content = file.read()
+    # Use the provided HTML content
+    content = html_content
 
     # Create BeautifulSoup object
     soup = BeautifulSoup(content, "html.parser")
@@ -208,8 +228,14 @@ def print_results(data):
 
 def main():
     """Main function to execute the advanced data extraction."""
-    # Call extract_recipe_data() and print_results()
-    data = extract_recipe_data()
+    # Fetch HTML content first
+    html_content = fetch_html()
+    if html_content is None:
+        print("Failed to fetch HTML content. Exiting.")
+        return
+
+    # Call extract_recipe_data() with the fetched HTML content and print_results()
+    data = extract_recipe_data(html_content)
     print_results(data)
 
 

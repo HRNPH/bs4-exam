@@ -4,25 +4,31 @@
 Practice advanced Beautiful Soup techniques including regex, data processing, and real-world extraction scenarios.
 
 ## Task
-Complete the `main.py` file to perform complex data extraction and analysis from `index.html`. Your program should:
+Complete the `main.py` file to perform complex data extraction and analysis by first fetching HTML content from the live URL, then processing the data. Your program should:
 
-1. **Extract and process recipe data** (5 points)
+1. **Fetch HTML from live URL** (5 points)
+   - Use the `requests` library to fetch HTML content from https://hrnph.dev/bs4-exam/exam-4
+   - Implement proper error handling for network requests
+   - Handle HTTP status codes and connection errors
+   - Return the HTML content for parsing
+
+2. **Extract and process recipe data** (5 points)
    - Extract all recipe information including name, difficulty, prep time, servings, calories
    - Parse numerical values from text (e.g., extract numbers from "20 mins", "320 cal")
    - Store structured data in a list of dictionaries
 
-2. **Use regular expressions for text processing** (5 points)
+3. **Use regular expressions for text processing** (5 points)
    - Extract numeric values from prep time, calorie count, and serving size
    - Parse rating numbers from rating text (e.g., extract 4.7 from "4.7/5.0 - 156 reviews")
    - Handle various text formats and extract consistent data
 
-3. **Calculate statistics and summaries** (5 points)
+4. **Calculate statistics and summaries** (5 points)
    - Calculate average prep time across all recipes
    - Find the recipe with highest and lowest calorie count
    - Count recipes by difficulty level
    - Calculate average rating from all recipes
 
-4. **Handle missing data and edge cases** (5 points)
+5. **Handle missing data and edge cases** (5 points)
    - Check for missing attributes or elements
    - Provide default values for missing data
    - Handle different data formats gracefully
@@ -50,6 +56,8 @@ Data Validation:
 ```
 
 ## Requirements
+- Use the `requests` library to fetch HTML content from the live URL
+- Implement proper error handling for network requests (HTTP errors, connection issues)
 - Use regular expressions (`re` module) for text processing
 - Handle different text formats and edge cases
 - Perform data validation and error checking

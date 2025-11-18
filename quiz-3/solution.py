@@ -1,17 +1,37 @@
 # Quiz 3: Navigation and Sibling Traversal - SOLUTION
+import requests
 from bs4 import BeautifulSoup
 
 
-def navigate_dom_tree():
+def fetch_html():
     """
-    Extract information from index.html using DOM navigation methods.
+    Fetch HTML content from the live URL.
+
+    Returns:
+        str: HTML content from the URL
+    """
+    url = "https://hrnph.dev/bs4-exam/exam-3"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for bad status codes
+        return response.text
+    except requests.RequestException as e:
+        print(f"Error fetching HTML: {e}")
+        return None
+
+
+def navigate_dom_tree(html_content):
+    """
+    Extract information from HTML content using DOM navigation methods.
+
+    Args:
+        html_content (str): HTML content to parse
 
     Returns:
         dict: Dictionary containing all extracted information using navigation
     """
-    # Read the index.html file
-    with open("index.html", "r", encoding="utf-8") as file:
-        content = file.read()
+    # Use the provided HTML content
+    content = html_content
 
     # Create BeautifulSoup object
     soup = BeautifulSoup(content, "html.parser")
@@ -104,8 +124,14 @@ def print_results(data):
 
 def main():
     """Main function to execute the DOM navigation extraction."""
-    # Call navigate_dom_tree() and print_results()
-    data = navigate_dom_tree()
+    # Fetch HTML content first
+    html_content = fetch_html()
+    if html_content is None:
+        print("Failed to fetch HTML content. Exiting.")
+        return
+
+    # Call navigate_dom_tree() with the fetched HTML content and print_results()
+    data = navigate_dom_tree(html_content)
     print_results(data)
 
 
